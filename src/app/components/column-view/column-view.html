@@ -1,0 +1,69 @@
+<div class="grid grid-cols-4 gap-4">
+  <!-- Applied Column -->
+  <div>
+    <div class="bg-blue-50 p-3 rounded-lg mb-4">
+      <h3 class="font-bold text-blue-600">APPLIED ({{ appliedJobs.length }})</h3>
+    </div>
+    <div class="space-y-3 overflow-y-auto max-h-100">
+      <app-job-card
+        *ngFor="let job of appliedJobs"
+        [jobTitle]="job.jobTitle"
+        [company]="job.company"
+        [location]="job.location"
+        [date]="job.date"
+        [status]="job.status"
+      ></app-job-card>
+    </div>
+  </div>
+
+  <!-- Interview Column -->
+  <div>
+    <div class="bg-orange-50 p-3 rounded-lg mb-4">
+      <h3 class="font-bold text-orange-600">INTERVIEW ({{ interviewJobs.length }})</h3>
+    </div>
+    <div class="space-y-3 overflow-y-auto max-h-100">
+      <app-job-card
+        *ngFor="let job of interviewJobs"
+        [jobTitle]="job.jobTitle"
+        [company]="job.company"
+        [location]="job.location"
+        [date]="job.date"
+        [status]="job.status"
+      ></app-job-card>
+    </div>
+  </div>
+
+  <!-- Offer Column -->
+  <div>
+    <div class="bg-green-50 p-3 rounded-lg mb-4">
+      <h3 class="font-bold text-green-600">OFFER ({{ offerJobs.length }})</h3>
+    </div>
+    <div class="space-y-3 overflow-y-auto max-h-100">
+      <app-job-card
+        *ngFor="let job of offerJobs"
+        [jobTitle]="job.jobTitle"
+        [company]="job.company"
+        [location]="job.location"
+        [date]="job.date"
+        [status]="job.status"
+      ></app-job-card>
+    </div>
+  </div>
+
+  <!-- Not Chosen Column -->
+  <div>
+    <div class="bg-red-50 p-3 rounded-lg mb-4">
+      <h3 class="font-bold text-red-600">NOT CHOSEN ({{ notChosenJobs.length }})</h3>
+    </div>
+    <div class="space-y-3 overflow-y-auto max-h-100">
+      <app-job-card
+        *ngFor="let job of notChosenJobs"
+        [jobTitle]="job.jobTitle"
+        [company]="job.company"
+        [location]="job.location"
+        [date]="job.date"
+        [status]="job.status"
+      ></app-job-card>
+    </div>
+  </div>
+</div>

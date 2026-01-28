@@ -1,0 +1,32 @@
+<div class="flex">
+  <app-sidebar></app-sidebar>
+  <div class="flex-1">
+    <app-header [title]="title" [stats]="stats"></app-header>
+    
+    <div class="p-6">
+      <app-tabs (tabChanged)="onTabChange($event)"></app-tabs>
+      <app-filter-bar></app-filter-bar>
+
+      <!-- Column View (Default) -->
+      <div *ngIf="activeTab === 'COLUMN_VIEW'" class="mt-6">
+        <app-column-view [jobs]="jobs"></app-column-view>
+      </div>
+
+      <!-- List View -->
+      <div *ngIf="activeTab === 'LIST_VIEW'" class="mt-6">
+        <app-list-view [jobs]="jobs"></app-list-view>
+      </div>
+
+      <!-- Sankey View -->
+      <div *ngIf="activeTab === 'SANKEY_VIEW'" class="mt-6">
+        <app-sankey-view [jobs]="jobs"></app-sankey-view>
+      </div>
+
+      <!-- Data Management -->
+      <div *ngIf="activeTab === 'DATA_MANAGEMENT'" class="mt-6">
+        <app-data-management [jobs]="jobs"></app-data-management>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="overflow-x-auto">
+  <table class="w-full">
+    <thead>
+      <tr class="border-b border-gray-300">
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Job Title</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Company</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Location</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Applied Date</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs" class="border-b border-gray-200 hover:bg-gray-50">
+        <td class="px-4 py-3">
+          <p class="font-semibold text-gray-800">{{ job.jobTitle }}</p>
+        </td>
+        <td class="px-4 py-3 text-gray-600">{{ job.company }}</td>
+        <td class="px-4 py-3 text-gray-600">{{ job.location }}</td>
+        <td class="px-4 py-3 text-gray-600">{{ job.date }}</td>
+        <td class="px-4 py-3">
+          <span [class]="'px-3 py-1 rounded-full text-xs font-semibold ' + getStatusColor(job.status)">
+            {{ job.status }}
+          </span>
+        </td>
+        <td class="px-4 py-3">
+          <button class="text-gray-600 hover:text-gray-800">
+            <i class="bi bi-three-dots-vertical"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+/* Filter Bar Styles */
+:host {
+  display: block;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}

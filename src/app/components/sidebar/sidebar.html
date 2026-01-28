@@ -1,0 +1,21 @@
+<div class="w-20 bg-gray-50 border-r border-gray-200 flex flex-col items-center py-8 h-screen">
+  <nav class="flex flex-col gap-6">
+    <button
+      *ngFor="let item of menuItems"
+      (click)="selectItem(item)"
+      [class.active-item]="isActive(item.id)"
+      class="p-3 rounded-lg text-gray-600 hover:text-green-700 hover:bg-gray-200 transition text-2xl"
+      [title]="item.label"
+    >
+      <i [class]="'bi ' + item.icon"></i>
+    </button>
+  </nav>
+  <div class="mt-auto flex flex-col gap-4">
+    <button class="p-3 text-gray-600 hover:text-green-700 text-xl">
+      <i class="bi bi-question-circle-fill"></i>
+    </button>
+    <button class="p-3 text-gray-600 hover:text-green-700 text-xl">
+      <i class="bi bi-person-circle"></i>
+    </button>
+  </div>
+</div>

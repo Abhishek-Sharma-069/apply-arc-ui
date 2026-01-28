@@ -1,0 +1,10 @@
+<div class="flex border-b border-gray-300">
+  <button
+    *ngFor="let tab of tabs"
+    (click)="selectTab(tab.id)"
+    [class.active-tab]="isActive(tab.id)"
+    class="px-6 py-3 text-sm font-medium text-gray-600 hover:text-green-700 transition"
+  >
+    {{ tab.label }}
+  </button>
+</div>

@@ -1,0 +1,9 @@
+/* Data Management Styles */
+:host {
+  display: block;
+}
+
+input,
+select {
+  font-size: 0.875rem;
+}

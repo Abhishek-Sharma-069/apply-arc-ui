@@ -1,0 +1,4 @@
+/* Column View Styles */
+:host {
+  display: block;
+}

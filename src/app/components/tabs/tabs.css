@@ -1,0 +1,10 @@
+/* Tabs Styles */
+:host {
+  display: block;
+}
+
+.active-tab {
+  color: #15803d;
+  border-bottom: 3px solid #15803d;
+  font-weight: 600;
+}

@@ -1,0 +1,9 @@
+/* Sidebar Styles */
+:host {
+  display: block;
+}
+
+.active-item {
+  color: #15803d;
+  background-color: #dcfce7;
+}

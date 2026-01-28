@@ -1,0 +1,28 @@
+<div class="flex justify-between items-center p-4">
+  <div class="text-3xl font-extrabold text-green-700 px-2 py-2 text-center rounded-md">
+    <h2>{{ title }}<i class="bi bi-fire bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 inline-block text-transparent bg-clip-text  "></i></h2>
+    
+  </div>
+  
+  <div class="flex justify-between items-center flex-1 ml-8">
+    <div class="flex gap-6">
+      <div *ngIf="stats">
+        <p class="text-sm text-gray-600">Interview Rate</p>
+        <p class="text-2xl font-bold text-orange-500">{{ stats.interviewRate }}</p>
+      </div>
+      <div *ngIf="stats">
+        <p class="text-sm text-gray-600">Offer Rate</p>
+        <p class="text-2xl font-bold text-green-600">{{ stats.offerRate }}</p>
+      </div>
+    </div>
+    
+    <div class="flex gap-4">
+      <button (click)="onExport()" class="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800">
+        <i class="bi bi-download"></i> Export
+      </button>
+      <button (click)="onAddJob()" class="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800">
+        <i class="bi bi-plus-circle"></i> Add Job
+      </button>
+    </div>
+  </div>
+</div>
