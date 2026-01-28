@@ -6,3 +6,22 @@
 .ml-2 {
   margin-left: 0.5rem;
 }
+
+/* Ensure dropdowns are visible and not clipped */
+.relative {
+  position: relative;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Hover effect for dropdown items */
+.hover-item {
+  background-color: white;
+}
+
+.hover-item:hover {
+  background-color: #f0f9ff;
+}
+

@@ -14,79 +14,27 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let job of jobs">
-          <tr *ngIf="editingJobId !== job.id" class="border-b border-gray-200 hover:bg-gray-50">
-            <td class="px-4 py-3">
-              <p class="font-semibold text-gray-800">{{ job.jobTitle }}</p>
-            </td>
-            <td class="px-4 py-3 text-gray-600">{{ job.company }}</td>
-            <td class="px-4 py-3 text-gray-600">{{ job.location }}</td>
-            <td class="px-4 py-3 text-gray-600">{{ job.date }}</td>
-            <td class="px-4 py-3">
-              <span [class]="'px-3 py-1 rounded-full text-xs font-semibold ' + getStatusColor(job.status)">
-                {{ job.status }}
-              </span>
-            </td>
-            <td class="px-4 py-3 flex gap-2">
-              <button (click)="startEdit(job)" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-xs">
-                Edit
-              </button>
-              <button (click)="deleteJob(job.id)" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs">
-                Delete
-              </button>
-            </td>
-          </tr>
-
-          <tr *ngIf="editingJobId === job.id" class="border-b border-gray-200 bg-blue-50">
-            <td class="px-4 py-3">
-              <input
-                type="text"
-                [(ngModel)]="editingJob!.jobTitle"
-                class="w-full px-2 py-1 border border-gray-300 rounded"
-              />
-            </td>
-            <td class="px-4 py-3">
-              <input
-                type="text"
-                [(ngModel)]="editingJob!.company"
-                class="w-full px-2 py-1 border border-gray-300 rounded"
-              />
-            </td>
-            <td class="px-4 py-3">
-              <input
-                type="text"
-                [(ngModel)]="editingJob!.location"
-                class="w-full px-2 py-1 border border-gray-300 rounded"
-              />
-            </td>
-            <td class="px-4 py-3">
-              <input
-                type="text"
-                [(ngModel)]="editingJob!.date"
-                class="w-full px-2 py-1 border border-gray-300 rounded"
-              />
-            </td>
-            <td class="px-4 py-3">
-              <select
-                [(ngModel)]="editingJob!.status"
-                class="w-full px-2 py-1 border border-gray-300 rounded"
-              >
-                <option value="APPLIED">APPLIED</option>
-                <option value="INTERVIEW">INTERVIEW</option>
-                <option value="OFFER">OFFER</option>
-                <option value="NOT_CHOSEN">NOT_CHOSEN</option>
-              </select>
-            </td>
-            <td class="px-4 py-3 flex gap-2">
-              <button (click)="saveEdit()" class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs">
-                Save
-              </button>
-              <button (click)="cancelEdit()" class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-xs">
-                Cancel
-              </button>
-            </td>
-          </tr>
-        </ng-container>
+        <tr *ngFor="let job of jobs" class="border-b border-gray-200 hover:bg-gray-50">
+          <td class="px-4 py-3">
+            <p class="font-semibold text-gray-800">{{ job.jobTitle }}</p>
+          </td>
+          <td class="px-4 py-3 text-gray-600">{{ job.company }}</td>
+          <td class="px-4 py-3 text-gray-600">{{ job.location }}</td>
+          <td class="px-4 py-3 text-gray-600">{{ job.date }}</td>
+          <td class="px-4 py-3">
+            <span [class]="'px-3 py-1 rounded-full text-xs font-semibold ' + getStatusColor(job.status)">
+              {{ job.status }}
+            </span>
+          </td>
+          <td class="px-4 py-3 flex gap-3">
+            <button (click)="editJob(job.id)" class="text-blue-600 hover:text-blue-800 text-lg" title="Edit">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button (click)="deleteJob(job.id)" class="text-red-600 hover:text-red-800 text-lg" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

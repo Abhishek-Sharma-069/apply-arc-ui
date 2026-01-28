@@ -1,20 +1,73 @@
-<div class="p-4 bg-gray-50 rounded-lg">
+<div class="p-4 bg-gray-50 rounded-lg" style="overflow: visible;">
   <div class="flex gap-4 items-center mb-4">
     <div class="flex-1">
       <input
         type="text"
-        placeholder="Search"
+        placeholder="Search jobs..."
+        [(ngModel)]="searchQuery"
         (input)="onSearch($event)"
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </div>
-    <button *ngFor="let filter of filters" 
-            (click)="onFilterChange(filter.label)"
-            class="px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-100 text-gray-700">
-      {{ filter.label }} <i class="bi bi-chevron-down ml-2"></i>
-    </button>
+
+    <!-- Filter Buttons with Dropdowns -->
+    <div class="flex gap-2" style="position: relative; z-index: 100;">
+      <div *ngFor="let filter of filters" style="position: relative; display: inline-block;">
+        <button
+          (click)="toggleFilterDropdown(filter.label); $event.stopPropagation()"
+          [style.backgroundColor]="selectedFilters[filter.label] ? '#dbeafe' : 'white'"
+          style="padding: 0.5rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; cursor: pointer; white-space: nowrap;"
+        >
+          {{ filter.label }}
+          <i [style.marginLeft.px]="8" [class]="'bi ' + (showFilterDropdown[filter.label] ? 'bi-chevron-up' : 'bi-chevron-down')"></i>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          *ngIf="showFilterDropdown[filter.label]"
+          style="position: absolute; top: 100%; left: 0; margin-top: 0.5rem; background-color: white; border: 1px solid #d1d5db; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); z-index: 1000; min-width: 150px;"
+        >
+          <div
+            *ngFor="let option of filter.options"
+            (click)="selectFilter(filter.label, option)"
+            style="padding: 0.5rem 1rem; cursor: pointer; white-space: nowrap; transition: background-color 0.15s;"
+            class="hover-item"
+          >
+            {{ option }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sort Button -->
+      <button
+        (click)="toggleSortOrder()"
+        style="padding: 0.5rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; background-color: white; cursor: pointer; white-space: nowrap;"
+        title="Toggle sort order"
+      >
+        <i [class]="'bi ' + (sortOrder === 'newest' ? 'bi-sort-down' : 'bi-sort-up')"></i>
+        {{ sortOrder === 'newest' ? 'Newest' : 'Oldest' }}
+      </button>
+    </div>
   </div>
-  <div class="text-sm text-gray-600">
-    Sort: Newest to Oldest <i class="bi bi-arrow-up"></i>
+
+  <!-- Active Filters Display -->
+  <div *ngIf="(searchQuery || Object.keys(selectedFilters).length > 0)" class="flex gap-2 flex-wrap">
+    <span *ngIf="searchQuery" style="padding: 0.25rem 0.75rem; background-color: #dbeafe; color: #1e40af; border-radius: 9999px; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem;">
+      "{{ searchQuery }}"
+      <button (click)="searchQuery = ''; onSearch($event)" style="background: none; border: none; color: #1e40af; cursor: pointer;">
+        <i class="bi bi-x"></i>
+      </button>
+    </span>
+    <ng-container *ngFor="let filter of filters">
+      <span
+        *ngIf="selectedFilters[filter.label]"
+        style="padding: 0.25rem 0.75rem; background-color: #dbeafe; color: #1e40af; border-radius: 9999px; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem;"
+      >
+        {{ filter.label }}: {{ selectedFilters[filter.label] }}
+        <button (click)="clearFilter(filter.label)" style="background: none; border: none; color: #1e40af; cursor: pointer;">
+          <i class="bi bi-x"></i>
+        </button>
+      </span>
+    </ng-container>
   </div>
 </div>

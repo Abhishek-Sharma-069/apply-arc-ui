@@ -1,8 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Job, JobService } from '../../services/job.service';
+import { Job } from '../../services/job.service';
 
+/**
+ * Data Management Component
+ * 
+ * Child component that displays jobs in a table format.
+ * Emits events to parent component for edit and delete operations.
+ * Modal is handled at the parent level.
+ */
 @Component({
   selector: 'app-data-management',
   standalone: true,
@@ -11,41 +18,44 @@ import { Job, JobService } from '../../services/job.service';
   styleUrls: ['./data-management.css'],
 })
 export class DataManagement {
+  // Input: array of jobs to display
   @Input() jobs: Job[] = [];
-  editingJobId: string | null = null;
-  editingJob: Job | null = null;
+  
+  // Output: emitted when a job edit button is clicked
+  @Output() jobEdited = new EventEmitter<string>();
+  
+  // Output: emitted when a job is deleted
+  @Output() jobDeleted = new EventEmitter<string>();
 
-  constructor(private jobService: JobService) {}
+  constructor() {}
 
-  startEdit(job: Job) {
-    this.editingJobId = job.id || null;
-    this.editingJob = { ...job };
-  }
-
-  cancelEdit() {
-    this.editingJobId = null;
-    this.editingJob = null;
-  }
-
-  saveEdit() {
-    if (this.editingJob && this.editingJobId) {
-      this.jobService.updateJob(this.editingJobId, this.editingJob);
-      const index = this.jobs.findIndex((j) => j.id === this.editingJobId);
-      if (index !== -1) {
-        this.jobs[index] = { ...this.editingJob };
-      }
-      this.editingJobId = null;
-      this.editingJob = null;
+  /**
+   * Handles edit button click
+   * Emits the job ID to parent component
+   * @param jobId - ID of the job to edit
+   */
+  editJob(jobId: string | undefined) {
+    if (jobId) {
+      this.jobEdited.emit(jobId);
     }
   }
 
+  /**
+   * Deletes a job by emitting jobDeleted event to parent
+   * Parent component handles the actual service call
+   * @param jobId - ID of the job to delete
+   */
   deleteJob(jobId: string | undefined) {
     if (jobId) {
-      this.jobService.deleteJob(jobId);
-      this.jobs = this.jobs.filter((j) => j.id !== jobId);
+      this.jobDeleted.emit(jobId);
     }
   }
 
+  /**
+   * Returns the CSS classes for status badge styling
+   * @param status - The job status
+   * @returns CSS class string for styling
+   */
   getStatusColor(status: string): string {
     const colors: { [key: string]: string } = {
       APPLIED: 'bg-blue-100 text-blue-600',

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface Stats {
@@ -16,6 +16,16 @@ export interface Stats {
 export class Header {
   @Input() title!: string;
   @Input() stats!: Stats;
+  
+  // Output: emitted when Add Job button is clicked
+  @Output() addJobClicked = new EventEmitter<void>();
+
+  /**
+   * Emits addJobClicked event to parent component
+   */
+  onAddJob() {
+    this.addJobClicked.emit();
+  }
 
   onRefresh() {
     console.log('Refresh clicked');
@@ -27,9 +37,5 @@ export class Header {
 
   onExport() {
     console.log('Export clicked');
-  }
-
-  onAddJob() {
-    console.log('Add Job clicked');
   }
 }

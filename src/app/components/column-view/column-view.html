@@ -12,6 +12,9 @@
         [location]="job.location"
         [date]="job.date"
         [status]="job.status"
+        [jobId]="job.id || ''"
+        (jobEdited)="editJob($event)"
+        (jobDeleted)="deleteJob($event)"
       ></app-job-card>
     </div>
   </div>
@@ -29,6 +32,9 @@
         [location]="job.location"
         [date]="job.date"
         [status]="job.status"
+        [jobId]="job.id || ''"
+        (jobEdited)="editJob($event)"
+        (jobDeleted)="deleteJob($event)"
       ></app-job-card>
     </div>
   </div>
@@ -46,6 +52,9 @@
         [location]="job.location"
         [date]="job.date"
         [status]="job.status"
+        [jobId]="job.id || ''"
+        (jobEdited)="editJob($event)"
+        (jobDeleted)="deleteJob($event)"
       ></app-job-card>
     </div>
   </div>
@@ -63,6 +72,9 @@
         [location]="job.location"
         [date]="job.date"
         [status]="job.status"
+        [jobId]="job.id || ''"
+        (jobEdited)="editJob($event)"
+        (jobDeleted)="deleteJob($event)"
       ></app-job-card>
     </div>
   </div>

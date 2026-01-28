@@ -15,7 +15,6 @@ export class Tabs {
   tabs = [
     { id: 'COLUMN_VIEW', label: 'COLUMN VIEW' },
     { id: 'LIST_VIEW', label: 'LIST VIEW' },
-    { id: 'SANKEY_VIEW', label: 'SANKEY VIEW' },
     { id: 'DATA_MANAGEMENT', label: 'DATA MANAGEMENT' },
   ];
 
